@@ -1,5 +1,6 @@
 package com.roselli208carucci301.usermanagement;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -30,6 +31,10 @@ public class LoginActivity extends AppCompatActivity {
             EditText pass = findViewById(R.id.password);
             if(user.getText().toString().equals("admin@admin.com") && pass.getText().toString().equals("1234")){
                 Toast.makeText(LoginActivity.this,"Logged in",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                startActivity(intent);
+
+                finish();
             }else{
                 Toast.makeText(LoginActivity.this,"Error",Toast.LENGTH_SHORT).show();
             }
