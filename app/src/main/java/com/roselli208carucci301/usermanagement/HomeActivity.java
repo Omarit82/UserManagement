@@ -2,8 +2,8 @@ package com.roselli208carucci301.usermanagement;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
@@ -34,7 +34,6 @@ public class HomeActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
         FloatingActionButton btnAdd = findViewById(R.id.btnIrAgregarContacto);
         contactState= findViewById(R.id.contactList);
         refreshView();
@@ -43,17 +42,17 @@ public class HomeActivity extends AppCompatActivity {
         result -> {
             if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                 Contacto nuevo = (Contacto) result.getData().getSerializableExtra("contactoNuevo");
-                Log.d("DEBUG_HOME", "Nuevo contacto recibido: " + nuevo.getNombre());
                 if (nuevo != null) {
                     contacts.add(nuevo);
                     refreshView();
                 }
+            }else{
+                Toast.makeText(HomeActivity.this,"Error",Toast.LENGTH_SHORT).show();
             }
         });
         btnAdd.setOnClickListener(view -> {
             Intent intent = new Intent(HomeActivity.this, AgregarContactoActivity.class);
-            startActivity(intent);
-
+            start.launch(intent);
         });
     }
     private void refreshView() {
@@ -62,7 +61,7 @@ public class HomeActivity extends AppCompatActivity {
         } else {
             StringBuilder sb = new StringBuilder("Lista de Contactos:\n");
             for (Contacto c : contacts) {
-                sb.append(c.getApellido()+", "+c.getNombre()).append("\n").append("Telefono: "+c.getTelefono());
+                sb.append(c.getApellido()+", "+c.getNombre()).append("\n").append("Telefono: "+c.getTelefono()).append("\n");
             }
             contactState.setText(sb.toString());
         }
