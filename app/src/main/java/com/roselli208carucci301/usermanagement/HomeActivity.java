@@ -12,6 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import android.view.Menu;
+import androidx.appcompat.widget.Toolbar;
+import android.view.MenuItem;
+import androidx.appcompat.widget.SearchView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -52,9 +56,86 @@ public class HomeActivity extends AppCompatActivity {
         });
         btnAdd.setOnClickListener(view -> {
             Intent intent = new Intent(HomeActivity.this, AgregarContactoActivity.class);
-            startActivity(intent);
+            start.launch(intent);
 
         });
+
+        //Toolbar del buscador
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    //Funcion para la toolbar de busqueda
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Carga el archivo menu_home.xml en la toolbar
+        getMenuInflater().inflate(R.menu.menu_home, menu);
+
+        //Busca dentro del menú la lupa (action_search)
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+
+        //Obtiene el componente visual del item, que es un SearchView
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        //Lee lo que el usuario escribe en el buscador
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //Se ejecuta cuando el usuario presiona enter o buscar
+                //En este caso no hacemos nada porque filtramos al escribir
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //Se ejecuta cada vez que se escribe o borra algo
+                //Llamamos a nuestro metodo para filtrar contactos (estaá mas abajo)
+                filtrarContactos(newText);
+
+                return true;
+            }
+        });
+
+        return true;
+    }
+    private void filtrarContactos(String texto) {
+        //Si no hay contactos mostramos mensaje vacío
+        if (contacts.isEmpty()) {
+            contactState.setText(R.string.empty_message);
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder("Lista de Contactos:\n");
+        boolean encontrado = false;
+
+        //Recorremos todos los contactos
+        for (Contacto c : contacts) {
+
+            //Armamos nombre completo en minúscula para comparar
+            String nombreCompleto = (c.getApellido() + " " + c.getNombre()).toLowerCase();
+
+            //Si contiene el texto buscado
+            if (nombreCompleto.contains(texto.toLowerCase())) {
+
+                sb.append(c.getApellido())
+                        .append(", ")
+                        .append(c.getNombre())
+                        .append("\n")
+                        .append("Telefono: ")
+                        .append(c.getTelefono())
+                        .append("\n\n");
+
+                encontrado = true;
+            }
+        }
+
+        // Si encontro coincidencias
+        if (encontrado) {
+            contactState.setText(sb.toString());
+        } else {
+            contactState.setText("No se encontraron contactos");
+        }
     }
     private void refreshView() {
         if (contacts.isEmpty()) {
