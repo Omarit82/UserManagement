@@ -2,9 +2,8 @@ package com.roselli208carucci301.usermanagement;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
@@ -17,6 +16,12 @@ import android.view.Menu;
 import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import java.util.Collections;
+import android.view.View;
+
+
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -24,9 +29,12 @@ import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
     /*Defino un arraylist para acumular los contactos*/
-    private final ArrayList<Contacto> contacts = new ArrayList<>();
-    private TextView contactState;
+    private final ArrayList<Contacto> contactos = new ArrayList<>();
+    private RecyclerView recyclerContactos;
+    private TextView txtEmpty;
+    private ContactoAdapter adapter;
     private ActivityResultLauncher<Intent> start;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,19 +48,31 @@ public class HomeActivity extends AppCompatActivity {
             return insets;
         });
         FloatingActionButton btnAdd = findViewById(R.id.btnIrAgregarContacto);
-        contactState= findViewById(R.id.contactList);
-        refreshView();
+
+        recyclerContactos = findViewById(R.id.recyclerContactos);
+        txtEmpty = findViewById(R.id.txtEmpty);
+        recyclerContactos.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter = new ContactoAdapter(contactos);
+        recyclerContactos.setAdapter(adapter);
         start = registerForActivityResult(
         new ActivityResultContracts.StartActivityForResult(),
         result -> {
             if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                 Contacto nuevo = (Contacto) result.getData().getSerializableExtra("contactoNuevo");
                 if (nuevo != null) {
-                    contacts.add(nuevo);
-                    refreshView();
+                    contactos.add(nuevo);
+                    //Ordenar por apellido
+                    Collections.sort(contactos, (c1, c2) -> {
+                        String apellido1 = c1.getApellido().toLowerCase();
+                        String apellido2 = c2.getApellido().toLowerCase();
+                        return apellido1.compareTo(apellido2);
+                    });
+                    adapter.actualizarLista(contactos);
+                    actualizarEstado();
                 }
             }else{
-                Toast.makeText(HomeActivity.this,"Error",Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomeActivity.this,"Carga de nuevo usuario cancelada",Toast.LENGTH_SHORT).show();
             }
         });
         btnAdd.setOnClickListener(view -> {
@@ -63,6 +83,7 @@ public class HomeActivity extends AppCompatActivity {
         //Toolbar del buscador
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        actualizarEstado();
     }
 
     //Funcion para la toolbar de busqueda
@@ -90,8 +111,8 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 //Se ejecuta cada vez que se escribe o borra algo
-                //Llamamos a nuestro metodo para filtrar contactos (estaá mas abajo)
-                filtrarContactos(newText);
+                adapter.filtrar(newText);
+                actualizarEstado();
 
                 return true;
             }
@@ -99,53 +120,21 @@ public class HomeActivity extends AppCompatActivity {
 
         return true;
     }
-    private void filtrarContactos(String texto) {
-        //Si no hay contactos mostramos mensaje vacío
-        if (contacts.isEmpty()) {
-            contactState.setText(R.string.empty_message);
-            return;
-        }
-
-        StringBuilder sb = new StringBuilder("Lista de Contactos:\n");
-        boolean encontrado = false;
-
-        //Recorremos todos los contactos
-        for (Contacto c : contacts) {
-
-            //Armamos nombre completo en minúscula para comparar
-            String nombreCompleto = (c.getApellido() + " " + c.getNombre()).toLowerCase();
-
-            //Si contiene el texto buscado
-            if (nombreCompleto.contains(texto.toLowerCase())) {
-
-                sb.append(c.getApellido())
-                        .append(", ")
-                        .append(c.getNombre())
-                        .append("\n")
-                        .append("Telefono: ")
-                        .append(c.getTelefono())
-                        .append("\n\n");
-
-                encontrado = true;
-            }
-        }
-
-        // Si encontro coincidencias
-        if (encontrado) {
-            contactState.setText(sb.toString());
+    //Metodo que muestra si no hay contactos el textView de No hay contactos agregados
+    //Si busca contactos pero no hay coincidencia muesta Sin Resultados
+    //Y si hay, muestra la lista
+    private void actualizarEstado() {
+        if (contactos.isEmpty()) {
+            txtEmpty.setText("Aún no tenés contactos");
+            txtEmpty.setVisibility(View.VISIBLE);
+            recyclerContactos.setVisibility(View.GONE);
+        } else if (adapter.estaVacia()) {
+            txtEmpty.setText("Sin resultados");
+            txtEmpty.setVisibility(View.VISIBLE);
+            recyclerContactos.setVisibility(View.GONE);
         } else {
-            contactState.setText("No se encontraron contactos");
-        }
-    }
-    private void refreshView() {
-        if (contacts.isEmpty()) {
-            contactState.setText(R.string.empty_message);
-        } else {
-            StringBuilder sb = new StringBuilder("Lista de Contactos:\n");
-            for (Contacto c : contacts) {
-                sb.append(c.getApellido()+", "+c.getNombre()).append("\n").append("Telefono: "+c.getTelefono()).append("\n");
-            }
-            contactState.setText(sb.toString());
+            txtEmpty.setVisibility(View.GONE);
+            recyclerContactos.setVisibility(View.VISIBLE);
         }
     }
 }
