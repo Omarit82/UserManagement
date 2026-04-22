@@ -33,7 +33,7 @@
                     android:layout_gravity="end|center_vertical"
                     android:layout_marginEnd="12dp"
                     android:background="@android:color/transparent"
-                    android:contentDescription="Atras"
+                    android:contentDescription="@string/atras"
                     android:padding="8dp"
                     android:src="@android:drawable/ic_menu_revert"
                     app:tint="@android:color/white" />
@@ -46,7 +46,7 @@
                     android:layout_weight="1"
                     android:background="#00FFFFFF"
                     android:paddingStart="16dp"
-                    android:text="Agregar contacto"
+                    android:text="@string/agregar_contacto"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
                     android:textSize="18sp"

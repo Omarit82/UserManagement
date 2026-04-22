@@ -24,11 +24,12 @@ public class HomeActivity extends AppCompatActivity {
             return insets;
         });
 
-        Button btnIrAgregarContacto = findViewById(R.id.btnIrAgregarContacto);
+        Button btnAdd = findViewById(R.id.btnIrAgregarContacto);
 
-        btnIrAgregarContacto.setOnClickListener(view -> {
+        btnAdd.setOnClickListener(view -> {
             Intent intent = new Intent(HomeActivity.this, AgregarContactoActivity.class);
             startActivity(intent);
+
         });
     }
 }

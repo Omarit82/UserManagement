@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="211dp"
-        android:layout_height="206dp"
+        android:layout_width="144dp"
+        android:layout_height="128dp"
         android:layout_marginTop="28dp"
         android:contentDescription="@string/user_avatar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,11 +21,12 @@
 
     <Button
         android:id="@+id/init"
-        android:layout_width="169dp"
-        android:layout_height="56dp"
+        android:layout_width="197dp"
+        android:layout_height="66dp"
         android:layout_marginTop="35dp"
         android:layout_marginBottom="64dp"
         android:backgroundTint="@color/blue_dark"
+        android:textColor="@color/white"
         android:text="@string/iniciar_sesion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,9 +35,9 @@
 
     <EditText
         android:id="@+id/email"
-        android:layout_width="347dp"
-        android:layout_height="54dp"
-        android:layout_marginBottom="52dp"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="60dp"
         android:autofillHints="emailAddress"
         android:background="#373636"
         android:backgroundTint="#FFFFFF"
@@ -46,39 +47,30 @@
         android:padding="10dp"
         android:textColor="#272727"
         android:textColorHint="#373737"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.531"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:text="@string/usuario"
-        android:textColor="@color/blue_dark"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/email"
+        app:layout_constraintHorizontal_bias="0.534"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="@string/password"
         android:textColor="@color/blue_dark"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintHorizontal_bias="0.282"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="347dp"
-        android:layout_height="54dp"
-        android:layout_marginBottom="176dp"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="264dp"
         android:autofillHints="password"
         android:background="#373636"
         android:backgroundTint="#FFFFFF"
@@ -88,17 +80,31 @@
         android:padding="10dp"
         android:textColor="#272727"
         android:textColorHint="#373737"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.562"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/usuario"
+        android:textColor="@color/blue_dark"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
+        style="@style/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/agenda"
-        style="@style/title"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

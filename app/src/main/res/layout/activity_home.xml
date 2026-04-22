@@ -7,21 +7,43 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
+        android:layout_width="408dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="@string/contacts" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnIrAgregarContacto"
+        android:contentDescription="@string/add_contact_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Agregar Contacto"
-        tools:layout_editor_absoluteX="93dp"
-        tools:layout_editor_absoluteY="556dp" />
+        android:backgroundTint="@color/blue_central"
+        android:textSize="50sp"
+        app:srcCompat="@drawable/add_contact"
+        app:tint="@color/green_lime"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.879"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.941"
+        app:shapeAppearanceOverlay="@style/rounded_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>

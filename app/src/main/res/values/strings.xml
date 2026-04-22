@@ -7,4 +7,9 @@
     <string name="password">Password</string>
     <string name="ingrese_password">Ingrese Password</string>
     <string name="agenda">Agenda</string>
+    <string name="agregar_contacto">Agregar contacto</string>
+    <string name="atras">Atras</string>
+    <string name="add_contact">+</string>
+    <string name="add_contact_description">Agregar Contacto</string>
+    <string name="contacts">Contactos</string>
 </resources>

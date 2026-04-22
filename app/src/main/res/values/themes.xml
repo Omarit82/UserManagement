@@ -14,4 +14,8 @@
         <item name="android:textSize">45sp</item>
         <item name="android:textColor">@color/blue_dark</item>
     </style>
+    <style name="rounded_button" parent="Base.Theme.UserManagement">
+        <item name="cornerSize">50%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
 </resources>

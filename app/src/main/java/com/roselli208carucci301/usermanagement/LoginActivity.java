@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
             EditText pass = findViewById(R.id.password);
             if(user.getText().toString().equals("admin@admin.com") && pass.getText().toString().equals("1234")){
                 Toast.makeText(LoginActivity.this,"Logged in",Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
                 startActivity(intent);
 
