@@ -12,4 +12,6 @@
     <string name="add_contact">+</string>
     <string name="add_contact_description">Agregar Contacto</string>
     <string name="contacts">Contactos</string>
+    <string name="list" />
+    <string name="empty_message">No hay contactos, la lista está vacía.</string>
 </resources>
