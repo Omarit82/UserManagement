@@ -14,4 +14,18 @@
     <string name="contacts">Contactos</string>
     <string name="list" />
     <string name="empty_message">No hay contactos, la lista está vacía.</string>
+    <string name="guardar">Guardar</string>
+    <string name="nombre">Nombre</string>
+    <string name="ingrese_nombre">Ingrese nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="ingrese_apellido">Ingrese apellido</string>
+    <string name="ingrese_domicilio">Ingrese domicilio</string>
+    <string name="ingrese_el_n_mero_de_tel_fono">Ingrese el número de teléfono</string>
+    <string name="femenino">Femenino</string>
+    <string name="masculino">Masculino</string>
+    <string name="domicilio">Domicilio</string>
+    <string name="g_nero">Género</string>
+    <string name="tel_fono">Teléfono</string>
+    <string name="avatar">avatar</string>
+    <string name="a_n_no_ten_s_contactos">Aún no tenés contactos</string>
 </resources>

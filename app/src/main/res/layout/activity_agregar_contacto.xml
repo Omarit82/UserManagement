@@ -40,14 +40,14 @@
 
                 <TextView
                     android:id="@+id/textTituloToolbar"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start|center_vertical"
                     android:layout_weight="1"
                     android:background="#00FFFFFF"
                     android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:text="@string/agregar_contacto"
-                    android:textAlignment="center"
                     android:textColor="@android:color/white"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -59,7 +59,7 @@
                     android:layout_gravity="end|center_vertical"
                     android:layout_marginEnd="12dp"
                     android:background="@android:color/transparent"
-                    android:contentDescription="Guardar"
+                    android:contentDescription="@string/guardar"
                     android:padding="8dp"
                     android:src="@android:drawable/ic_menu_save"
                     app:tint="@android:color/white" />
@@ -78,110 +78,114 @@
 
                 <TextView
                     android:id="@+id/textViewNombre"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:paddingRight="24dp"
-                    android:text="Nombre"
+                    android:paddingEnd="24dp"
+                    android:paddingStart="24dp"
+                    android:text="@string/nombre"
                     android:textColor="@color/blue_dark"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/editTextNombre"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:ems="10"
-                    android:hint="Ingrese nombre"
+                    android:hint="@string/ingrese_nombre"
+                    android:autofillHints="name"
                     android:inputType="text"
-                    android:textColorHint="#868686" />
+                    android:textColorHint="@color/blue_dark" />
 
                 <TextView
                     android:id="@+id/textViewApellido"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="Apellido"
+                    android:text="@string/apellido"
                     android:textColor="@color/blue_dark"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/editTextApellido"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:ems="10"
-                    android:hint="Ingrese apellido"
+                    android:hint="@string/ingrese_apellido"
                     android:inputType="text"
-                    android:textColorHint="#868686" />
+                    android:textColorHint="@color/blue_dark"
+                    android:autofillHints="name"/>
 
                 <TextView
                     android:id="@+id/textViewTelefono"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="Teléfono"
+                    android:text="@string/tel_fono"
                     android:textColor="@color/blue_dark"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/editTextTelefono"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:ems="10"
-                    android:hint="Ingrese el número de teléfono"
+                    android:hint="@string/ingrese_el_n_mero_de_tel_fono"
                     android:inputType="phone"
-                    android:textColorHint="#777777" />
+                    android:textColorHint="@color/blue_dark"
+                    android:autofillHints="phone"/>
 
                 <TextView
                     android:id="@+id/textViewDomicilio"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="Domicilio"
+                    android:text="@string/domicilio"
                     android:textColor="@color/blue_dark"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/editTextDomicilio"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:ems="10"
-                    android:hint="Ingrese domicilio"
+                    android:hint="@string/ingrese_domicilio"
                     android:inputType="text"
-                    android:textColorHighlight="#221919"
-                    android:textColorHint="#828181" />
+                    android:textColorHint="@color/blue_dark"
+                    android:autofillHints="postalAddress"/>
 
                 <TextView
                     android:id="@+id/textViewGenero"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="Género"
+                    android:text="@string/g_nero"
                     android:textColor="@color/blue_dark"
                     android:textStyle="bold" />
 
                 <RadioGroup
                     android:id="@+id/radioGroupGenero"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
                     <RadioButton
                         android:id="@+id/radioButtonFem"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Femenino"
+                        android:text="@string/femenino"
                         android:textColor="@color/blue_dark"
                         android:textColorLink="#458498" />
 
                     <RadioButton
                         android:id="@+id/radioButtonMas"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"
-                        android:text="Masculino"
+                        android:text="@string/masculino"
                         android:textColor="@color/blue_dark"
                         android:textColorLink="#458498" />
                 </RadioGroup>
