@@ -93,7 +93,8 @@
                     android:layout_marginBottom="10dp"
                     android:ems="10"
                     android:hint="Ingrese nombre"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColorHint="#868686" />
 
                 <TextView
                     android:id="@+id/textViewApellido"
@@ -111,7 +112,8 @@
                     android:layout_marginBottom="10dp"
                     android:ems="10"
                     android:hint="Ingrese apellido"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColorHint="#868686" />
 
                 <TextView
                     android:id="@+id/textViewTelefono"
@@ -129,7 +131,8 @@
                     android:layout_marginBottom="10dp"
                     android:ems="10"
                     android:hint="Ingrese el número de teléfono"
-                    android:inputType="phone" />
+                    android:inputType="phone"
+                    android:textColorHint="#777777" />
 
                 <TextView
                     android:id="@+id/textViewDomicilio"
@@ -147,7 +150,9 @@
                     android:layout_marginBottom="10dp"
                     android:ems="10"
                     android:hint="Ingrese domicilio"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColorHighlight="#221919"
+                    android:textColorHint="#828181" />
 
                 <TextView
                     android:id="@+id/textViewGenero"

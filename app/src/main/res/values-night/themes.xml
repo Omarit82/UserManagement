@@ -1,7 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.UserManagement" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+    </style>
+
+    <style name="general" parent="Base.Theme.UserManagement">
+        <item name="android:background">@color/very_light_blue</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+    <style name="title" parent="Base.Theme.UserManagement">
+        <item name="android:textSize">45sp</item>
+        <item name="android:textColor">@color/blue_dark</item>
+    </style>
+    <style name="rounded_button" parent="Base.Theme.UserManagement">
+        <item name="cornerSize">50%</item>
+        <item name="cornerFamily">rounded</item>
     </style>
 </resources>
