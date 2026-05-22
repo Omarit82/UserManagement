@@ -21,6 +21,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.Collections;
 import android.view.View;
 
+import android.content.SharedPreferences; //Importamos el SharedPreferences para el storage del login
+
 
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -120,6 +122,31 @@ public class HomeActivity extends AppCompatActivity {
 
         return true;
     }
+
+    //Sobreescribimos el metodo original de Android para el menu de cerrar sesion
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        //Al tocar "Cerrar sesión"
+        if (item.getItemId() == R.id.action_logout) {
+            SharedPreferences preferences = getSharedPreferences("sesion", MODE_PRIVATE);//Abrimos SharedPreferences
+            SharedPreferences.Editor editor = preferences.edit(); //Creamos editor para modificar preferencias
+            editor.putBoolean("usuarioAutenticado", false); //Cambiamos usuarioAutenticado a false para el deslogueo
+            editor.apply(); //Guardamos cambios
+
+            //Volvemos al LoginActivity
+            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+            startActivity(intent);
+
+            //Cerramos HomeActivity
+            finish();
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     //Metodo que muestra si no hay contactos el textView de No hay contactos agregados
     //Si busca contactos pero no hay coincidencia muesta Sin Resultados
     //Y si hay, muestra la lista
