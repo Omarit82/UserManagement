@@ -82,7 +82,6 @@ public class HomeActivity extends AppCompatActivity {
                 Contacto nuevo = (Contacto) result.getData().getSerializableExtra("contactoNuevo");
                 if (nuevo != null) {
                     db.contactoDao().insertar(nuevo);
-                    contactos.add(nuevo);
 
                     contactos.clear();
                     contactos.addAll(db.contactoDao().getAllContacts());

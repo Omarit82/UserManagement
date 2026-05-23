@@ -63,7 +63,7 @@ public class AgregarContactoActivity extends AppCompatActivity {
 
             //Crea el contacto
             Contacto contacto = new Contacto(nombre, apellido, telefono, domicilio, genero);
-            /*
+
             //Muestra el mensaje Contacto guardado y vuelve (solo para probar)
             Intent resultado = new Intent();
             resultado.putExtra("contactoNuevo", contacto);
@@ -71,22 +71,7 @@ public class AgregarContactoActivity extends AppCompatActivity {
             setResult(RESULT_OK, resultado);
 
             Toast.makeText(this, "Contacto guardado", Toast.LENGTH_SHORT).show();
-            finish();*/
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-
-                    db.contactoDao().insertar(contacto);
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(AgregarContactoActivity.this,"Contacto guardado",Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
-                    });
-                }
-            }).start();
+            finish();
         });
 
         //Boton Atras
