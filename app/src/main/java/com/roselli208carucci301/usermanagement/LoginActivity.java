@@ -11,16 +11,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
+import androidx.room.Room;
 import android.content.SharedPreferences; //Import para SharedPreferences
+import com.roselli208carucci301.usermanagement.database.AppDatabase;
+
 
 public class LoginActivity extends AppCompatActivity {
 
+    private AppDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
+
+        /*Conexion a la db*/
+        db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"agenda_db").build();
 
         //Al abrir hay que leer la clave del "sesion" para ingresar directo o loguearse
         SharedPreferences preferences = getSharedPreferences("sesion", MODE_PRIVATE); //Creamos (O lo abrimos si ya existe) un archivo de preferencias que llamamos "sesion"

@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.room.Room;
+
 import java.util.Collections;
 import android.view.View;
 
@@ -26,6 +28,8 @@ import android.content.SharedPreferences; //Importamos el SharedPreferences para
 
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.roselli208carucci301.usermanagement.database.AppDatabase;
+import com.roselli208carucci301.usermanagement.database.Contacto;
 
 import java.util.ArrayList;
 
@@ -36,6 +40,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextView txtEmpty;
     private ContactoAdapter adapter;
     private ActivityResultLauncher<Intent> start;
+    private AppDatabase db;
 
 
     @Override
@@ -43,6 +48,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
+
+        db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"agenda_db").allowMainThreadQueries().build();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -57,13 +64,29 @@ public class HomeActivity extends AppCompatActivity {
 
         adapter = new ContactoAdapter(contactos);
         recyclerContactos.setAdapter(adapter);
+
+        contactos.addAll(db.contactoDao().getAllContacts());
+
+        Collections.sort(contactos, (c1,c2) ->{
+            String apellido1 = c1.getApellido().toLowerCase();
+            String apellido2 = c2.getApellido().toLowerCase();
+            return apellido1.compareTo(apellido2);
+        });
+
+        adapter.actualizarLista(contactos);
+
         start = registerForActivityResult(
         new ActivityResultContracts.StartActivityForResult(),
         result -> {
             if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                 Contacto nuevo = (Contacto) result.getData().getSerializableExtra("contactoNuevo");
                 if (nuevo != null) {
+                    db.contactoDao().insertar(nuevo);
                     contactos.add(nuevo);
+
+                    contactos.clear();
+                    contactos.addAll(db.contactoDao().getAllContacts());
+
                     //Ordenar por apellido
                     Collections.sort(contactos, (c1, c2) -> {
                         String apellido1 = c1.getApellido().toLowerCase();

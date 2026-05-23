@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.roselli208carucci301.usermanagement.database.Contacto;
+
 import java.util.ArrayList;
 
 //Esta clase conecta la lista de contactos con el RecyclerView (Que sirve para mostrar los contactos en android)

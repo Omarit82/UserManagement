@@ -7,15 +7,19 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RadioButton;
 import android.content.Intent;
-
+import androidx.room.Room;
+import com.roselli208carucci301.usermanagement.database.AppDatabase;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.roselli208carucci301.usermanagement.database.Contacto;
+
 public class AgregarContactoActivity extends AppCompatActivity {
+
+    private AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +63,7 @@ public class AgregarContactoActivity extends AppCompatActivity {
 
             //Crea el contacto
             Contacto contacto = new Contacto(nombre, apellido, telefono, domicilio, genero);
-
+            /*
             //Muestra el mensaje Contacto guardado y vuelve (solo para probar)
             Intent resultado = new Intent();
             resultado.putExtra("contactoNuevo", contacto);
@@ -67,7 +71,22 @@ public class AgregarContactoActivity extends AppCompatActivity {
             setResult(RESULT_OK, resultado);
 
             Toast.makeText(this, "Contacto guardado", Toast.LENGTH_SHORT).show();
-            finish();
+            finish();*/
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    db.contactoDao().insertar(contacto);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(AgregarContactoActivity.this,"Contacto guardado",Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    });
+                }
+            }).start();
         });
 
         //Boton Atras

@@ -1,8 +1,13 @@
-package com.roselli208carucci301.usermanagement;
+package com.roselli208carucci301.usermanagement.database;
 
 import java.io.Serializable;
-public class Contacto implements Serializable {
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity(tableName = "contactos")
+public class Contacto implements Serializable {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private String nombre;
     private String apellido;
     private String telefono;
