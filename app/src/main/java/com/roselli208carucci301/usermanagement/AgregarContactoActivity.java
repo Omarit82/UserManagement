@@ -7,8 +7,6 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RadioButton;
 import android.content.Intent;
-import androidx.room.Room;
-import com.roselli208carucci301.usermanagement.database.AppDatabase;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -18,8 +16,6 @@ import androidx.core.view.WindowInsetsCompat;
 import com.roselli208carucci301.usermanagement.database.Contacto;
 
 public class AgregarContactoActivity extends AppCompatActivity {
-
-    private AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,24 +30,20 @@ public class AgregarContactoActivity extends AppCompatActivity {
         EditText editTextDomicilio = findViewById(R.id.editTextDomicilio);
         RadioGroup radioGroupGenero = findViewById(R.id.radioGroupGenero);
 
-        //Boton Guardar (Usa la info del formulario y vuelve al home
         ImageButton btnGuardarToolbar = findViewById(R.id.btnGuardarToolbar);
         btnGuardarToolbar.setOnClickListener(view -> {
 
-            //Lee los campos completados
             String nombre = editTextNombre.getText().toString().trim();
             String apellido = editTextApellido.getText().toString().trim();
             String telefono = editTextTelefono.getText().toString().trim();
             String domicilio = editTextDomicilio.getText().toString().trim();
             int idSeleccionado = radioGroupGenero.getCheckedRadioButtonId();
 
-            //Verifica que se haya seleccionado el genero
             if (idSeleccionado == -1) {
                 Toast.makeText(this, "Seleccioná un género", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            //Verifica que esten todos completos
             if (nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || domicilio.isEmpty()) {
                 Toast.makeText(this, "Completá todos los campos", Toast.LENGTH_SHORT).show();
                 return;
@@ -74,11 +66,8 @@ public class AgregarContactoActivity extends AppCompatActivity {
             finish();
         });
 
-        //Boton Atras
         ImageButton btnAtrasToolbar = findViewById(R.id.btnAtrasToolbar);
-        btnAtrasToolbar.setOnClickListener(view -> {
-            finish();
-        });
+        btnAtrasToolbar.setOnClickListener(view -> finish());
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

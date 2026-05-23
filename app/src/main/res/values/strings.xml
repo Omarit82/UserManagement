@@ -27,5 +27,7 @@
     <string name="g_nero">Género</string>
     <string name="tel_fono">Teléfono</string>
     <string name="avatar">avatar</string>
-    <string name="a_n_no_ten_s_contactos">Aún no tenés contactos</string>
+    <string name="aun_no_tienes_contactos">Aun no tienes contactos</string>
+    <string name="sin_resultados">Sin resultados</string>
+    <string name="a_n_no_ten_s_contactos">Aun no tienes contactos</string>
 </resources>

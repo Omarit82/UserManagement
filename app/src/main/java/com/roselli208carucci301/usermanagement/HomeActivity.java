@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.room.Room;
 
-import java.util.Collections;
 import android.view.View;
 
 import android.content.SharedPreferences; //Importamos el SharedPreferences para el storage del login
@@ -67,7 +66,7 @@ public class HomeActivity extends AppCompatActivity {
 
         contactos.addAll(db.contactoDao().getAllContacts());
 
-        Collections.sort(contactos, (c1,c2) ->{
+        contactos.sort((c1, c2) -> {
             String apellido1 = c1.getApellido().toLowerCase();
             String apellido2 = c2.getApellido().toLowerCase();
             return apellido1.compareTo(apellido2);
@@ -87,7 +86,7 @@ public class HomeActivity extends AppCompatActivity {
                     contactos.addAll(db.contactoDao().getAllContacts());
 
                     //Ordenar por apellido
-                    Collections.sort(contactos, (c1, c2) -> {
+                    contactos.sort((c1, c2) -> {
                         String apellido1 = c1.getApellido().toLowerCase();
                         String apellido2 = c2.getApellido().toLowerCase();
                         return apellido1.compareTo(apellido2);
@@ -123,6 +122,7 @@ public class HomeActivity extends AppCompatActivity {
         SearchView searchView = (SearchView) searchItem.getActionView();
 
         //Lee lo que el usuario escribe en el buscador
+        assert searchView != null;
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
@@ -153,7 +153,7 @@ public class HomeActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.action_logout) {
             SharedPreferences preferences = getSharedPreferences("sesion", MODE_PRIVATE);//Abrimos SharedPreferences
             SharedPreferences.Editor editor = preferences.edit(); //Creamos editor para modificar preferencias
-            editor.putBoolean("usuarioAutenticado", false); //Cambiamos usuarioAutenticado a false para el deslogueo
+            editor.putBoolean("usuarioAutenticado", false);
             editor.apply(); //Guardamos cambios
 
             //Volvemos al LoginActivity
@@ -168,17 +168,13 @@ public class HomeActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    //Metodo que muestra si no hay contactos el textView de No hay contactos agregados
-    //Si busca contactos pero no hay coincidencia muesta Sin Resultados
-    //Y si hay, muestra la lista
     private void actualizarEstado() {
         if (contactos.isEmpty()) {
-            txtEmpty.setText("Aún no tenés contactos");
+            txtEmpty.setText(R.string.aun_no_tienes_contactos);
             txtEmpty.setVisibility(View.VISIBLE);
             recyclerContactos.setVisibility(View.GONE);
         } else if (adapter.estaVacia()) {
-            txtEmpty.setText("Sin resultados");
+            txtEmpty.setText(R.string.sin_resultados);
             txtEmpty.setVisibility(View.VISIBLE);
             recyclerContactos.setVisibility(View.GONE);
         } else {

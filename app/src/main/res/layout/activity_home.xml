@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/very_light_blue"
     tools:context=".HomeActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -46,23 +47,22 @@
         app:layout_constraintTop_toBottomOf="@id/materialToolbar" />
 
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnIrAgregarContacto"
-        android:contentDescription="@string/add_contact_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/blue_central"
+        android:contentDescription="@string/add_contact_description"
         android:textSize="50sp"
-        app:srcCompat="@drawable/add_contact"
-        app:tint="@color/green_lime"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.879"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.941"
-        app:shapeAppearanceOverlay="@style/rounded_button" />
+        app:shapeAppearanceOverlay="@style/rounded_button"
+        app:srcCompat="@drawable/add_contact"
+        app:tint="@color/green_lime" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerContactos"
