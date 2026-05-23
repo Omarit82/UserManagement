@@ -8,7 +8,7 @@ import java.util.List;
 @Dao
 public interface ContactoDao {
     @Insert
-    void insertar(Contacto contacto);
+    public void insertar(Contacto contacto);
 
     @Query("SELECT * FROM contactos")
     List<Contacto> getAllContacts();

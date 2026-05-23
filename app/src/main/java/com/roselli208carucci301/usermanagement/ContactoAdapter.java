@@ -1,10 +1,12 @@
 package com.roselli208carucci301.usermanagement;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -71,6 +73,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.ViewHo
             nombreCompleto = itemView.findViewById(R.id.txtNombreCompleto);
             telefono = itemView.findViewById(R.id.txtTelefono);
             avatar = itemView.findViewById(R.id.imgAvatar);
+
         }
     }
 
@@ -96,6 +99,18 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.ViewHo
         //Mostramos los datos en el item
         holder.nombreCompleto.setText(c.getApellido() + ", " + c.getNombre());
         holder.telefono.setText(c.getTelefono());
+        holder.itemView.setOnClickListener(v -> {
+
+            Toast.makeText(
+                    v.getContext(),
+                    "Contacto seleccionado: " + c.getApellido() + ", " + c.getNombre(),
+                    Toast.LENGTH_SHORT
+            ).show();
+            Intent intent = new Intent(v.getContext(), EditContactActivity.class);
+            intent.putExtra("contacto", c);
+            v.getContext().startActivity(intent);
+
+        });
     }
 
     //Indica cuántos elementos tiene la lista

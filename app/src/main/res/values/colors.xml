@@ -11,4 +11,6 @@
     <color name="green_lime">#FF8CD907</color>
     <color name="green_lime_light">#FFB3F542</color>
     <color name="very_light_blue">#FF8b9395</color>
+    <color name="fondo">#FF5d801c</color>
+
 </resources>

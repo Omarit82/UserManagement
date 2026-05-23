@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/general">
         <activity
+            android:name=".EditContactActivity"
+            android:exported="false" />
+        <activity
             android:name=".AgregarContactoActivity"
             android:exported="false" />
         <activity
