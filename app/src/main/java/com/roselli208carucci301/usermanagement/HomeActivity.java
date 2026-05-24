@@ -109,6 +109,34 @@ public class HomeActivity extends AppCompatActivity {
         actualizarEstado();
     }
 
+    //Para refrescar los contactos luego de actualizarlo
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //Limpiamos la lista actual
+        contactos.clear();
+
+        //Volvemos a cargar desde Room
+        contactos.addAll(db.contactoDao().getAllContacts());
+
+        //Ordenamos por apellido
+        contactos.sort((c1, c2) -> {
+            String apellido1 = c1.getApellido().toLowerCase();
+            String apellido2 = c2.getApellido().toLowerCase();
+            return apellido1.compareTo(apellido2);
+        });
+
+        //Actualizamos RecyclerView
+        adapter.actualizarLista(contactos);
+
+        //Reiniciamos el RecyclerView para actualizar la vista
+        recyclerContactos.setAdapter(adapter);
+
+        //Actualizamos estado vacío/sin resultados
+        actualizarEstado();
+    }
+
     //Funcion para la toolbar de busqueda
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -101,11 +101,7 @@ public class ContactoAdapter extends RecyclerView.Adapter<ContactoAdapter.ViewHo
         holder.telefono.setText(c.getTelefono());
         holder.itemView.setOnClickListener(v -> {
 
-            Toast.makeText(
-                    v.getContext(),
-                    "Contacto seleccionado: " + c.getApellido() + ", " + c.getNombre(),
-                    Toast.LENGTH_SHORT
-            ).show();
+            Toast.makeText(v.getContext(),"Editar contacto",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(v.getContext(), EditContactActivity.class);
             intent.putExtra("contacto", c);
             v.getContext().startActivity(intent);

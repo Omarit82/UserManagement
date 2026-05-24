@@ -31,4 +31,6 @@
     <string name="sin_resultados">Sin resultados</string>
     <string name="a_n_no_ten_s_contactos">Aun no tienes contactos</string>
     <string name="eliminar">Eliminar</string>
+    <string name="contacto">Contacto</string>
+    <string name="actualizar">Actualizar</string>
 </resources>
