@@ -6,7 +6,7 @@
     style="@style/general"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fondo"
+    android:background="@color/very_light_blue"
     tools:context=".LoginActivity">
 
     <ImageView
@@ -14,7 +14,7 @@
         android:layout_width="144dp"
         android:layout_height="128dp"
         android:layout_marginTop="28dp"
-        android:background="@color/fondo"
+        android:background="@color/very_light_blue"
         android:contentDescription="@string/user_avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="@string/password"
-        android:textColor="@color/blue_dark"
+        android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +95,7 @@
         android:layout_marginStart="84dp"
         android:layout_marginBottom="16dp"
         android:text="@string/usuario"
-        android:textColor="@color/blue_light"
+        android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintStart_toStartOf="parent" />
@@ -106,6 +106,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/agenda"
+        android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
